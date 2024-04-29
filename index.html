@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>k.anik — Imagery.S1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>[ proj.2b ]</h1>    
+    <div class="dragqueens" id="queenie">
+        <p>
+        Name: Katarina Anik Schøller
+        <br>
+        ID: #1307194
+        <br>
+        Institution: University of Melbourne
+        <br>
+        Degree: Bachelor of Design
+        <br>
+        Majors: Graphic Design, Performance Design
+        <br>
+        Relevant Unit: Imagery in Graphic Design, S1 2024
+    </div>
+    <div class="dragqueens" id="video-container">
+        <video controls width="100%" preload="auto">
+            <source src="videos/smiley.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="dragqueens" id="threesisters">
+        <img src="images/threesisters_v02.gif">
+    </div>
+    <div class="dragqueens" id="sister01">
+        <img src="images/sister01.png">
+    </div>
+    <div class="dragqueens" id="sister02">
+        <img src="images/sister02.png">
+    </div>
+    <div class="dragqueens" id="sister03">
+        <img src="images/sister03.png">
+    </div>
+    <div class="dragqueens" id="animation-class">
+        <img src="images/animation_class.gif">
+    </div>
+    <div class="dragqueens" id="fashionlady">
+        <img src="images/fashionlady.png">
+    </div>
+    <div class="dragqueens" id="fashionlady-ref">
+        <img src="images/EirianChapman_ref.jpg">
+    </div>
+    <div class="dragqueens" id="aniexplain">
+        <p>Workshop 03 was a short introductory to the first principles of animation. After Effects has a steep learning curve, but here is a little animation attempt that I'd like to develop further. We looked at Eirian Chapman's work, which is absolutely insane — her ghost loops are incredible. Definitely a level of mastery I aspire to. </p>
+        <a href="https://www.annafirth.com/ghost-loops" target="_blank">Reference: Anna Firth</a>
+    </div>
+    <div class="dragqueens" id="classexerciseexplain">
+        <p>This animation here was a group effort. Passed around the class, everyone had 3 minutes to draw the next frame, and on we went until our initial drawing came back around to us.</p>
+    </div>
+    <div class="dragqueens" id="inkexplain">
+        <p>Marlene Dumas was the source of inspiration for Workshop 01. I selected one of her ink illustrations as a beginning form, and from there let myself explore quite freely. Wet into wet. Energy over likeness. I repeated this process 3 times illustrating what you can see here. </p>
+        <a href="https://www.marlenedumas.nl/" target="_blank">Reference: Marlene Dumas</a>
+    </div>
+    <div class="dragqueens" id="blobexplain">
+        <p>
+        Dreamscapes & Magical mystery blobz.
+        <br>
+        Give 'em a drag.
+        </p>
+    </div>
+    <div class="dragqueens" id="fashioninkexplain">
+        <p>
+       Workshop 02 was looking at the principles of how one uses colour. We looked at Maira Kalman's work during class, but I didn't quite love what I was creating. Colour is used very liberally in Kalman's illustrations, and I wouldn't say I'm much of a 'colourist' myself. I'm particularly fond of using dark colours, minimalist colour schemes and the use of black in particular, so I decided to try again at home and using one of Eirian Chapman's fashion illustraions landed on this lady here. 
+    </p>
+    <a href="https://www.eirianchapman.com/About" target="_blank">Reference: Eirian Chapman</a>
+
+    </div>
+    <div class="dragqueens" id="blobred">
+        <img src="images/blob01.png">
+    </div>
+    <div class="dragqueens" id="bloborange">
+        <img src="images/blob02.png">
+    </div>
+    <div class="dragqueens" id="blobgolden">
+        <img src="images/blob03.png">
+    </div>
+    <div class="dragqueens" id="blobblue">
+        <img src="images/blob04.png">
+    </div>
+    <div class="dragqueens" id="bloboyster">
+        <img src="images/blob05.png">
+    </div>
+    <div class="dragqueens" id="blobpurp">
+        <img src="images/blob06.png">
+    </div>
+    <div class="dragqueens" id="blobgreen">
+        <img src="images/blob07.png">
+    </div>
+    <div class="dragqueens" id="blobdark">
+        <img src="images/blob08.png">
+    </div>
+    <div class="dragqueens" id="blobyellow">
+        <img src="images/blob09.png">
+    </div>
+    <div id="bottombox">
+        <p>Thanks for visiting.</p>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var draggables = document.querySelectorAll('.dragqueens');
+    var currentZIndex = 1000;
+
+    draggables.forEach(function(draggable) {
+        draggable.addEventListener('mousedown', function(event) {
+            event.preventDefault();
+
+            currentZIndex++;
+            draggable.style.zIndex = currentZIndex;
+
+            var startX = event.clientX;
+            var startY = event.clientY;
+            var rect = draggable.getBoundingClientRect();
+            var offsetX = startX - rect.left;
+            var offsetY = startY - rect.top;
+
+            function moveAt(moveEvent) {
+                if (window.getComputedStyle(draggable).position === 'fixed') {
+                    draggable.style.left = (moveEvent.clientX - offsetX) + 'px';
+                    draggable.style.top = (moveEvent.clientY - offsetY) + 'px';
+                } else {
+                    draggable.style.left = (moveEvent.clientX - offsetX + window.scrollX) + 'px';
+                    draggable.style.top = (moveEvent.clientY - offsetY + window.scrollY) + 'px';
+                }
+            }
+
+            document.addEventListener('mousemove', moveAt);
+
+            draggable.addEventListener('mouseup', function() {
+                document.removeEventListener('mousemove', moveAt);
+            });
+
+            draggable.addEventListener('mouseleave', function() {
+                document.removeEventListener('mousemove', moveAt);
+            });
+        });
+    });
+});
+</script>      
+</body>
+</html>
